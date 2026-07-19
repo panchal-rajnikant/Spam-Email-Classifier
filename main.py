@@ -1,4 +1,4 @@
-from src import preprocess, train_model, evaluate
+from src import preprocess, train_model, evaluate, prediction
 import pandas as pd
 import joblib
 
@@ -29,3 +29,11 @@ else:
 joblib.dump(best_model, "models/spam_model.pkl")
 
 print(f"{best_model_name} saved successfully.")
+
+emails = [
+    "Congratulations! You won a free iPhone.",
+    "Let's meet tomorrow at 10 AM."
+]
+prediction.predict_email(emails)
+# email_prediction = prediction.predict_email(emails)
+# print(email_prediction)
