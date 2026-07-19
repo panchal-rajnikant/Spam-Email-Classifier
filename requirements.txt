@@ -1,0 +1,6 @@
+This file lists all Python packages needed to run the project.
+
+pandas
+scikit-learn
+matplotlib
+joblib
