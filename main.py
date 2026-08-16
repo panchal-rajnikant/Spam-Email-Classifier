@@ -1,8 +1,13 @@
 from src import preprocess, train_model, evaluate, prediction
 import pandas as pd
 import joblib
+from pathlib import Path
 
-df = pd.read_csv("data/spam.csv")
+base_dir = Path(__file__).resolve().parent
+csv_path = base_dir / "data" / "spam.csv"
+    
+
+df = pd.read_csv(csv_path)
 
 df["label"] = df["label"].map({"ham": 0, "spam": 1})
 df["message"] = df["message"].apply(preprocess.clean_text)
@@ -26,7 +31,8 @@ else:
     best_model = nb_pipe
     best_model_name = "Multinomial Naive Bayes"
 
-joblib.dump(best_model, "models/spam_model.pkl")
+model_path = base_dir / "models" / "spam_model.pkl"
+joblib.dump(best_model, model_path)
 
 print(f"{best_model_name} saved successfully.")
 
